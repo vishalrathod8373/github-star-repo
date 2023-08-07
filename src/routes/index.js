@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Routes, Route, } from "react-router-dom";
+import Home from "../pages/Home";
 
-const UserList = React.lazy(() => import("../pages/users"));
-const CreateUser = React.lazy(() => import("../pages/createUser"));
 
 const RouteComponent = () => {
 
@@ -12,18 +11,11 @@ const RouteComponent = () => {
                 path="/"
                 element={
                     <React.Suspense fallback={<>....</>}>
-                        <UserList />
+                        <Home />
                     </React.Suspense>
                 }
             />
-            <Route
-                path="/createUser"
-                element={
-                    <React.Suspense fallback={<>....</>}>
-                        <CreateUser />
-                    </React.Suspense>
-                }
-            />
+
         </Routes>
     );
 };

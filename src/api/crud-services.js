@@ -1,10 +1,22 @@
 import Api from "./Api";
 
 export default {
-    getUserList(param) {
-        return Api.get(`/users`, { params: param })
+    getRepo(data) {
+        const { payload } = data
+        
+        return Api.get(`/search/repositories?q=created:>${payload.date}&sort=stars&order=desc&page=${payload.page}&per_page=10`)
     },
-    createUser(data) {
-        return Api.post('/users', data)
+    codeFreq(data) {
+        
+        const { payload } = data
+        return Api.get(`/repos/${payload?.owner}/${payload?.repo}/stats/code_frequency`)
+    },
+    commitActivity(data){
+        const { payload } = data
+        return Api.get(`/repos/${payload?.owner}/${payload?.repo}/stats/commit_activity`)
+    },
+    contributors(data){
+        const { payload } = data
+        return Api.get(`/repos/${payload?.owner}/${payload?.repo}/stats/contributors`)
     }
 };
